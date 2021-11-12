@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+   name: argodemo-ingress
+   annotations:
+      nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+    rules:
+    - host: example.com 
+      http:
+        paths:
+        - backend:
+            service:
+              name: certdemo
+              port:
+                number: 80
+          path: /
+          pathType: Prefix
